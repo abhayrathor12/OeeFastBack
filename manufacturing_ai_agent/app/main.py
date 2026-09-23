@@ -20,13 +20,22 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://oee-online-nu.vercel.app",
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.include_router(machines.router)
 app.include_router(agent.router)
 app.include_router(incidents.router)
